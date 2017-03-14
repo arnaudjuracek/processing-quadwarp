@@ -1,10 +1,13 @@
 public class QuadWarper {
   private final float hoverTriggerDistanceSq = sq(50);
 
-  public int width, height;
+  public int x, y, width, height;
   public PVector[] vertices;
 
-  QuadWarper (int width, int height) {
+  QuadWarper (int width, int height) { this(0, 0, width, height); }
+  QuadWarper (int x, int y, int width, int height) {
+    this.x = x;
+    this.y = y;
     this.width = width;
     this.height = height;
 
@@ -13,10 +16,10 @@ public class QuadWarper {
 
   public void reset () {
     this.vertices = new PVector[] {
-      new PVector(10, 10), // top left
-      new PVector(width - 10, 10), // top right
-      new PVector(width - 10, height - 10), // bottom right
-      new PVector(10, height - 10), // bottom left
+      new PVector(this.x, this.y), // top left
+      new PVector(this.x + this.width, this.y), // top right
+      new PVector(this.x + this.width, this.y + this.height), // bottom right
+      new PVector(this.x, this.y + this.height), // bottom left
     };
   }
 
